@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Login / Register</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel&family=Cormorant+Garamond&family=Inter&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="loginRegister.css">
+</head>
+<body >
+    <!-- Header -->
+
+    <div class="header">
+        <div class="logo">
+            Mystic Forge
+        </div>
+        <div class="nav">
+            <a href="index.html">Home</a>
+            <a href="index.html#shop">Shop</a>
+            <a href="cart.html">Cart</a>
+            <a href="LoginRegister.html">Login / Regisgter</a>
+        </div>
+    </div>
+
+    <div id="tog-login" class="login">
+        <h1>Login</h1>
+        <form id="login" method="post">
+            <div  class="box">
+            <label>Username:</label>
+            <input id="logname" placeholder="Username..." />
+
+            <label>Password:</label>
+            <input id="logpassword" type="password" placeholder="Password..." />
+
+            <button type="submit">Login</button>
+
+            <label class="signup">Don't have an account?</label>
+            <a href="#" onclick="toggleForm('register')">Sign UP</a>
+
+        </div>
+        </form>
+    </div>
+    <div id="tog-register" class="Register">
+        <h1>Register</h1>
+        <form id="register" method="post">
+            <div  class="box">
+            <label>Username:</label>
+            <input id="name" placeholder="Username..." />
+
+            <label>Password:</label>
+            <input id="password" type="password" placeholder="Password..." />
+
+            <button type="submit">Register</button>
+
+            <label class="signup">Already have an account?</label>
+            <a href="#" onclick="toggleForm('login')">Sign In</a>
+
+        </div>
+        </form>
+    </div>
+
+
+    <script>
+        function toggleForm(formtype) {
+            const login = document.getElementById('tog-login');
+            const register = document.getElementById('tog-register');
+
+            if (formtype === 'login') {
+                login.style.display = 'flex';
+                register.style.display = 'none';
+            } else if (formtype === 'register') {
+                login.style.display = 'none';
+                register.style.display = 'flex';
+            }
+        };
+
+
+        // Register
+        function getUser(){
+            return JSON.parse(localStorage.getItem('users') || '{}');
+        }
+
+        function saveUser(users){
+            localStorage.setItem('users', JSON.stringify(users));
+        }
+
+        document.getElementById('register').onsubmit = function(e){
+            e.preventDefault();
+
+            let Username = document.getElementById('name').value.trim();
+            let password = document.getElementById('password').value;
+
+            if(!Username || !password){
+                alert('please fill both fields');
+                return;
+            }
+            
+            let users = getUser();
+
+            if(users[Username]) {
+                alert('username already taken');
+                return;
+            }
+
+            users[Username] = password;
+            saveUser(users);
+
+            alert('Register, you can now log in.');
+            toggleForm('login');
+            this.reset();
+        }
+
+       // login
+       
+       document.getElementById('login').onsubmit = function(e){
+        e.preventDefault();
+
+        let username = document.getElementById('logname').value.trim();
+        let password = document.getElementById('logpassword').value;
+
+        let users = getUser();
+
+        if(users[username] && users[username] === password){
+            localStorage.setItem('loginUser', username);
+            alert('success');
+            window.location.href="index.html";
+        }else{
+            alert('invalied');
+        }
+
+        this.reset();
+       };
+    </script>
+
+</body>
+</html>

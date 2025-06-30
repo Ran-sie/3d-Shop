@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Product Page</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel&family=Cormorant+Garamond&family=Inter&display=swap" rel="stylesheet">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="product.css" />
+</head>
+<body>
+    <!-- Header -->
+
+    <div class="header">
+        <div class="logo">
+            Mystic Forge
+        </div>
+        <div class="nav">
+            <a href="index.html">Home</a>
+            <a href="index.html#shop">Shop</a>
+            <a href="cart.html">Cart</a>
+            <a id="nav-login" href="LoginRegister.html">Login / Regisgter</a>
+            <a id="welcome" style="display: none; cursor: pointer;">Welcom, <span id="username"></span></a>
+            <a id="logout" style="display: none; cursor: pointer;">Logout</span></a>
+        </div>
+    </div>
+
+    <div id="product-item" class="item">
+        <div class="item-text"></div>
+        <h1 id="product-name"></h1>
+        <p id="product-description"></p>
+        <a id="link" href="#" target="_blank">View on Sketchfab</a>
+        <div class="item-box">
+            <button id="add-to-cart">Add to Cart</button>
+            <label id="product-price"></label>
+            <button id="buy">Buy Now</button>
+        </div>
+    </div>-->
+
+    <div id="modal" class="modal">
+        <div class="modal-box">
+            <i class='bx bx-check-circle'></i>
+            <h1>Order Confirmed!</h1>
+            <p>Thanks for exploring Mystic Forge.</p>
+            <button onclick="location.href='index.html#shop'">Return to Shop</button>
+        </div>
+    </div>
+
+    <div id="loading-screen">
+        <div class="loading-wrap">
+            <div class="loading-text">Loading Item....</div>
+            <div class="progress-bar">
+                <div class="progress-fill" id="progress-fill"></div>
+            </div>
+            <div id="progress-count">0%</div>
+        </div>
+    </div>
+
+    <canvas id="bg"></canvas>
+
+    <script src="js/three.min.js"></script>
+    <script src="js/GLTFLoader.js"></script>
+    <script src="shop.js"></script>
+    <script src="product.js"></script>
+
+    <script>
+        window.onload = function(){
+            const logUser = localStorage.getItem('loginUser');
+
+            if(logUser){
+                document.getElementById('nav-login').style.display = 'none';
+                document.getElementById('welcome').style.display = 'flex';
+                document.getElementById('logout').style.display = 'flex';
+                document.getElementById('username').textContent = logUser;
+            }
+        }
+
+        document.getElementById('logout').onclick = function(){
+            localStorage.removeItem('loginUser');
+            window.location.href="LoginRegister.html";
+        }
+
+
+    </script>
+</body>
+</html>

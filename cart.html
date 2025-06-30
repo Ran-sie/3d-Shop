@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Cart</title>
+    <link rel="stylesheet" href="cart.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel&family=Cormorant+Garamond&family=Inter&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Header -->
+
+    <div class="header">
+        <div class="logo">
+            Mystic Forge
+        </div>
+        <div class="nav">
+            <a href="index.html">Home</a>
+            <a href="index.html#shop">Shop</a>
+            <a href="cart.html">Cart</a>
+            <a id="nav-login" href="LoginRegister.html">Login / Regisgter</a>
+            <a id="welcome" style="display:none; cursor:pointer;">Welcome, <span id="username"></span></a>
+            <a id="logout"  style="display:none; cursor:pointer;">logout</a>
+        </div>
+    </div>
+
+    <div class="name">
+        <h1><span id="username-cart"></span>'s Cart</h1>
+        <div id="cart-box" class="box">
+            <div  class="item-box"></div>
+        </div>
+        <button onclick="location.href='checkout.html'">Proceed to Checkout</button>
+    </div>
+
+    <script src="shop.js"></script>
+
+    <script>
+        window.onload = function(){
+            const logUser = localStorage.getItem('loginUser');
+
+            if(logUser){
+                document.getElementById('nav-login').style.display = 'none';
+                document.getElementById('welcome').style.display = 'flex';
+                document.getElementById('logout').style.display = 'flex';
+                document.getElementById('username').textContent = logUser;
+                document.getElementById('username-cart').textContent = logUser;
+            }
+        }
+
+        document.getElementById('logout').onclick = function(){
+            localStorage.removeItem('loginUser');
+            window.location.href="LoginRegister.html";
+        }
+
+        const cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+        const box = document.getElementById("cart-box");
+        box.className = "box";
+
+        if(cart.length === 0){
+            const emptyMessage = document.createElement('h3');
+            emptyMessage.textContent = "Your cart is Empty!";
+            box.appendChild(emptyMessage);
+        }else{
+            let total = 0;
+
+            cart.slice().reverse().forEach(product => {
+            const item = document.createElement("div");
+            item.className = "item-box";
+
+            item.innerHTML = `
+                <img src="${product.image}"/>    
+                <h3>${product.name}</h3>
+                <h3>${product.price}</h3>
+                <button onclick="removeFromCart('${product.id}')">Remove</button>
+            `;
+
+            box.appendChild(item);
+
+            total += parseFloat(product.price);
+        });
+
+        const totalEl = document.createElement("h2");
+        totalEl.textContent = `Total: ${total} GOLD`;
+        box.appendChild(totalEl);
+        }
+
+        
+
+        
+
+        function removeFromCart(id){
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            
+            const index = cart.findIndex(item => item.id === id);
+            if(confirm("are tou sure you want to remove?") && index !== -1){
+                cart.splice(index, 1);
+            }
+
+            localStorage.setItem('cart', JSON.stringify(cart));
+            location.reload();
+
+        };
+
+        
+    </script>
+
+</body>
+</html>

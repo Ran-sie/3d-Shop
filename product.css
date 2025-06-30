@@ -1,0 +1,210 @@
+body {
+    font-family: 'Cinzel', sans-serif;
+    background: radial-gradient(circle, #0B1C3B, #381A4D);
+}
+
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+    width: 100%;
+    height: 80px;
+    background: rgba(10,10,20);
+    z-index: 100;
+}
+
+.logo {
+    color: #F4C76D;
+    font-size: 24px;
+    margin: 20px;
+}
+
+.header .nav {
+    display: flex;
+}
+
+    .header .nav a {
+        margin: 20px;
+        color: white;
+        font-size: 24px;
+        text-decoration: none;
+        transition: all .3s ease-in-out;
+    }
+
+        .header .nav a:hover {
+            transform: scale(1.2);
+            -webkit-text-stroke: 2px gold;
+        }
+
+.item{
+    position: relative;
+    top: 450px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    z-index: 100;
+}
+
+.item a{
+    color: gold;
+    text-decoration: none;
+    transition: all .3s ease-in-out;
+    font-size: 24;
+    font-weight: bold;
+}
+
+.item a:hover{
+    transform: scale(1.2);
+}
+
+.item h1{
+    color: gold;
+    margin-bottom: 2px;
+}
+
+.item p{
+    color: gold;
+    margin-top: 2px;
+}
+
+.item-box{
+    display: flex;
+    color: gold;
+    margin: 2px;
+    gap: 50px;
+}
+
+.item-box label{
+    font-size: 28px;
+}
+
+    .item-box button {
+        width: 150px;
+        height: 50px;
+        border: 2px ridge gold;
+        border-radius: 10px;
+        font-size: 18px;
+        font-weight: bold;
+        color: gold;
+        cursor: pointer;
+        background: radial-gradient(circle, #381A4D, rgba(10,10,20));
+        font-family: 'Cinzel', sans-serif;
+        transition: all .3s ease-in-out;
+        z-index: 100;
+    }
+
+    .item-box button:hover{
+        transform: scale(1.2);
+        box-shadow: 5px 5px 5px 5px black;
+    }
+
+#modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    background: rgb(5, 5, 5, .5);
+    z-index: 1000;
+}
+
+.modal-box {
+    position: relative;
+    display: flex;
+    width: 500px;
+    height: 350px;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 0;
+    border-radius: 20px;
+    border: 5px ridge gold;
+    background: radial-gradient(circle, #381A4D, rgba(10,10,20));
+    z-index: 1001;
+}
+
+    .modal-box i {
+        font-size: 100px;
+        color: gold;
+        -webkit-text-stroke: 2px #F4C76D;
+    }
+
+.modal .modal-box h1 {
+    color: gold;
+    margin-bottom: 2px;
+}
+
+.modal .modal-box p {
+    color: gold;
+    margin-top: 2px;
+}
+
+.modal .modal-box button {
+    width: 250px;
+    height: 50px;
+    border-radius: 10px;
+    border: 3px ridge #F4C76D;
+    font-size: 24px;
+    font-weight: bold;
+    font-family: 'Cinzel', sans-serif;
+    cursor: pointer;
+    background-color: orange;
+}
+
+body.modal-open {
+    overflow: hidden;
+}
+
+#loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
+
+        .loading-text {
+            font-size: 30px;
+            margin-bottom: 10px;
+            -webkit-text-stroke: .5px gold;
+        }
+
+
+        .progress-bar {
+            width: 300px;
+            height: 20px;
+            background: gray;
+            border-radius: 5px;
+            border: 2px white solid;
+            overflow: hidden;
+            margin: 0 auto 15px;
+        }
+
+        .progress-fill {
+            height: 100%;
+            width: 0%;
+            background: #4cff00;
+            transition: width .3s ease-in;
+        }
+
+canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+}

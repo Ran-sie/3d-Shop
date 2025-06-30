@@ -1,0 +1,114 @@
+<!DOCTYPE hmtl>
+<html lang="en">
+<head>
+    <title>Check Out</title>
+    <link rel="stylesheet" href="checkout.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel&family=Cormorant+Garamond&family=Inter&display=swap" rel="stylesheet">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+<body>
+
+    <!-- Header -->
+
+    <div class="header">
+        <div class="logo">
+            Mystic Forge
+        </div>
+        <div class="nav">
+            <a href="index.html">Home</a>
+            <a href="index.html#shop">Shop</a>
+            <a href="cart.html">Cart</a>
+            <a id="nav-login" href="LoginRegister.html">Login / Regisgter</a>
+            <a id="welcome" style="display: none; cursor: pointer;">Welcome, <span id="username"></span></a>
+            <a id="logout"style="display: none; cursor: pointer;">Logout</a>
+        </div>
+    </div>
+
+    <div id="check" class="check">
+        <h1>Checkout</h1>
+        <div class="item">
+            <div class="box">
+                <label>Name</label>
+                <input />
+                <label>Email</label>
+                <input />
+            </div>
+            <div id="check-box" class="box">
+                
+                <div class="box-item">
+                    
+                </div>
+                <div class="total">
+                </div>
+            </div>
+        </div>
+        <button id="orderBtn">Place Order</button>
+    </div>
+
+    <div id="modal" class="modal">
+        <div class="modal-box">
+            <i class='bx bx-check-circle'></i>
+            <h1>Order Confirmed!</h1>
+            <p>Thanks for exploring Mystic Forge.</p>
+            <button onclick="location.href='index.html#shop'">Return to Shop</button>
+        </div>
+    </div>
+
+    <script>
+        const modal = document.getElementById('modal');
+        const btn = document.getElementById('orderBtn');
+        const check = document.getElementById('check');
+
+        btn.onclick = function () {
+            modal.style.display = 'flex';
+            document.body.classList.add("modal-open");
+        };
+
+       window.onload = function() {
+        const logUser = localStorage.getItem('loginUser');
+
+        if(logUser){
+            document.getElementById('nav-login').style.display = 'none';
+            document.getElementById('welcome').style.display = 'flex';
+            document.getElementById('logout').style.display = 'flex';
+            document.getElementById('username').textContent = logUser;
+        }
+       }
+
+       document.getElementById('logout').onclick = function(){
+            localStorage.removeItem('loginUser');
+            window.location.href="LoginRegister.html";
+        }
+
+        const cart = JSON.parse(localStorage.getItem('cart')) || [];
+        let total = 0;
+
+        const box = document.getElementById("check-box");
+        box.className = "box";
+
+        const order = document.createElement("h3");
+        order.textContent = "Order Summary";
+        box.appendChild(order);
+
+        cart.forEach(product => {
+            const item = document.createElement("div");
+            item.className = "box-item";
+
+            item.innerHTML = `
+                <p>${product.name}</p>
+                <p>${product.price}</p>
+            `;
+
+            box.appendChild(item);
+
+            total += parseFloat(product.price);
+        });
+
+        const totalet = document.createElement("label");
+        totalet.textContent = `Total: ${total} GOLD`;
+        box.appendChild(totalet);
+    </script>
+
+
+</body>
+</html>

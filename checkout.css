@@ -1,0 +1,198 @@
+body {
+    font-family: 'Cinzel', sans-serif;
+    background: radial-gradient(circle, #0B1C3B, #381A4D);
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+    width: 100%;
+    height: 80px;
+    background: rgba(10,10,20);
+    z-index: 100;
+}
+
+.logo {
+    color: #F4C76D;
+    font-size: 24px;
+    margin: 20px;
+}
+
+.header .nav {
+    display: flex;
+}
+
+    .header .nav a {
+        margin: 20px;
+        color: white;
+        font-size: 24px;
+        text-decoration: none;
+        transition: all .3s ease-in-out;
+    }
+
+        .header .nav a:hover {
+            transform: scale(1.2);
+            -webkit-text-stroke: 2px gold;
+        }
+
+.check{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 10px;
+    padding: 100px;
+}
+
+.check h1{
+    font-size: 35px;
+    color: white;
+}
+
+.item{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: row;
+    gap: 20px;
+}
+
+.box {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 20px;
+    width: 500px;
+    max-height: 250px;
+    overflow-y: auto;
+    border-radius: 10px;
+    margin: 20px;
+    padding: 25px;
+    background: radial-gradient(circle, #381A4D, rgba(10,10,20));
+}
+
+.box label{
+    font-size: 24px;
+    color: white;
+}
+
+    .box input {
+        width: 250px;
+        height: 35px;
+        border-radius: 14px;
+        background: transparent;
+        color: white;
+        font-family: 'Cinzel', sans-serif;
+        border: 1px solid white;
+    }
+
+.box h3{
+    font-size: 24px;
+    color: white;
+}
+
+.box .box-item{
+    display: flex;
+    justify-content: space-evenly;
+    align-content: center;
+    flex-direction: row;
+    gap: 20px;
+    font-size: 24px;
+    color: white;
+}
+
+.total{
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: row;
+    gap: 10px;
+}
+
+.check button {
+    width: 200px;
+    height: 50px;
+    border-radius: 10px;
+    background-color: orange;
+    border: 2px medium #F4C76D;
+    font-size: 24px;
+    font-weight: bold;
+    cursor: pointer;
+    font-family: 'Cinzel', sans-serif;
+    transition: all .3s ease-in-out;
+}
+
+.check button:hover{
+    transform: scale(1.2);
+    box-shadow: 5px 5px 5px 5px black;
+}
+
+#modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    background: rgb(5, 5, 5, .5);
+    z-index: 1000;
+}
+
+.modal-box {
+    position: relative;
+    display: flex;
+    width: 500px;
+    height: 350px;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 0;
+    border-radius: 20px;
+    border: 5px ridge gold;
+    background: radial-gradient(circle, #381A4D, rgba(10,10,20));
+    z-index: 1001;
+}
+
+    .modal-box i {
+        font-size: 100px;
+        color: gold;
+        -webkit-text-stroke: 2px #F4C76D;
+    }
+
+.modal .modal-box h1 {
+    color: gold;
+    margin-bottom: 2px;
+}
+
+.modal .modal-box p {
+    color: gold;
+    margin-top: 2px;
+}
+
+.modal .modal-box button {
+    width: 250px;
+    height: 50px;
+    border-radius: 10px;
+    border: 3px ridge #F4C76D;
+    font-size: 24px;
+    font-weight: bold;
+    font-family: 'Cinzel', sans-serif;
+    cursor: pointer;
+    background-color: orange;
+}
+
+body.modal-open{
+    overflow: hidden;
+}
